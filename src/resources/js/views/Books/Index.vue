@@ -11,40 +11,43 @@
         </div>
         <div class="col-lg-4 btn-block">
             <div class="d-grid">
-                <button class="btn btn-success">Add new book</button>
+                <router-link :to="{name: 'BookCreate'}" tag="button" class="btn btn-success">Add new book</router-link>
             </div>
         </div>
     </div>
 </div>
 <div class="container mt-5">
-    <div class="row item" v-for="book in books">
-        <div class="row">
-            <div class="col-md-4 book-image d-flex justify-content-center align-items-center">
-                <p class="book-image-placeholder">Book image placeholder</p>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex mt-2 align-items-center justify-content-between">
-                            <span class="book-name">{{ book.name }}</span>
-                            <div>
-                                <button class="btn btn-primary me-2">Preview</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </div>
+    <div v-if="books.length" class="row item" v-for="book in books">
+        <div class="col-md-4 book-image d-flex justify-content-center align-items-center">
+            <p class="book-image-placeholder">Book image placeholder</p>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex mt-2 align-items-center justify-content-between">
+                        <span class="book-name">{{ book.name }}</span>
+                        <div>
+                            <router-link :to="'/update/' + book.id" tag="button" class="btn btn-primary me-2">Edit</router-link>
+                            <button @click="deleteBook(book.id)" class="btn btn-danger">Delete</button>
                         </div>
-                        <hr/>
                     </div>
-                    <div class="col-12">
-                        <p class="book-author">Author: {{ book.author }}</p>
-                    </div>
-                    <div class="col-12">
-                        <p class="book-stock">Quantity: {{ book.stock }} szt.</p>
-                    </div>
-                    <div class="col-12">
-                        <p class="book-category">Category: {{ book.category[0]?.name }}</p>
-                    </div>
+                    <hr/>
+                </div>
+                <div class="col-12">
+                    <p class="book-author">Author: {{ book.author }}</p>
+                </div>
+                <div class="col-12">
+                    <p class="book-stock">Quantity: {{ book.stock }} szt.</p>
+                </div>
+                <div class="col-12">
+                    <p class="book-category">Category: {{ book.category[0]?.name }}</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div v-else class="row">
+        <div class="col-lg-12 text-center">
+            <h3>No results, add new book.</h3>
         </div>
     </div>
 </div>
@@ -82,6 +85,13 @@ function search(searchable) {
 
 function pageChange(page) {
     loadBooks(page);
+}
+
+function deleteBook(id) {
+    bookStore.deleteBook(id).finally(() => {
+        books.value = books.value.filter(book => book.id !== id);
+        loadBooks();
+    });
 }
 </script>
 

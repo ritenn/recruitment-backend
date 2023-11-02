@@ -38,7 +38,7 @@ class BookStoreRequest extends FormRequest
                 'required',
                 'string',
                 'min:1',
-                'max:65535',
+                'max:500',
             ],
             'stock' => [
                 'required',

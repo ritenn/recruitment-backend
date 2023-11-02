@@ -38,7 +38,7 @@ class BookUpdateRequest extends FormRequest
                 'nullable',
                 'string',
                 'min:1',
-                'max:65535',
+                'max:500',
             ],
             'stock' => [
                 'nullable',

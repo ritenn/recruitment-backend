@@ -29,7 +29,7 @@
                             </li>
                         </ul>
                         <form class="d-flex" @submit.prevent>
-                            <input v-model="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input v-model="search" v-on:change="searchBooks" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button @click="searchBooks" class="btn btn-outline-success">Search</button>
                         </form>
                     </div>

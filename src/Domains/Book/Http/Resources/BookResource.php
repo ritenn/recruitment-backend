@@ -20,7 +20,7 @@ class BookResource extends JsonResource
             'id' => $this->resource->id,
             'name' => $this->resource->name,
             'author' => $this->resource->author,
-            'publication_date' => $this->resource->publication_date,
+            'publication_date' => $this->resource->publication_date->format('Y-m-d'),
             'description' => $this->resource->description,
             'stock' => $this->resource->stock,
             'category' => CategorySimpleResource::collection($this->resource->categories)
