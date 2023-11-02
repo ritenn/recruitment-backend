@@ -5,41 +5,37 @@ Stworzenie prostego systemu do zarządzania książkami w bibliotece.
 
 ## Specyfikacja:
 1. **Aplikacja:**
-    - Użyj Laravela jako frameworka oraz MySQL jako bazy danych.
-2. **Interfejs użytkownika:**
-    - Prosty interfejs, który pozwoli użytkownikowi na dodawanie, edycję, usuwanie oraz przeglądanie książek.
-3. **Model książki:**
-	Książka powinna zawierać następujące informacje:
-	- Tytuł
-	- Autor
-	- Rok wydania
-	- Krótki opis
-	- Ilość dostępnych egzemplarzy
-4. **Walidacja:**
-	- Upewnij się, że wszystkie pola są odpowiednio walidowane przed zapisaniem do bazy danych.
-5. **Wyszukiwanie:**
-	- Użytkownik powinien być w stanie wyszukać książkę po tytule lub autorze.
-6. **Paginacja:**
-    - Jeśli w bazie jest więcej niż 10 książek, użyj paginacji do wyświetlania wyników.
-7. **Relacje:**
-    - Dodaj funkcjonalność, która pozwoli na przypisanie książki do kategorii (np. literatura, historia, nauka). Użytkownik powinien być w stanie przeglądać książki według kategorii.
+    - Laravel 10.30, 
+    - Vue 3.5, 
+    - MySQL 8.2.0, 
+    - PHP 8.2, 
+    - Node 20.9.0, 
+    - npm 10.1.0, 
+    - Docker (docker-compose)
+    - Bootstrap 5
+2. **Opis:**
+    - Logika backendowa znajduje się w formie modułów w folderze "Domains, frontend został zbudowany w formie SPA konsumując API Laravela."
 
-## Dodatkowe punkty za:
-1. Użycie migracji i seederów w Laravelu do stworzenia przykładowych danych.
-2. Stworzenie API do zarządzania książkami.
-3. Użycie autoryzacji i autentykacji w aplikacji, tak aby tylko zalogowani użytkownicy mogli zarządzać książkami.
-4. Responsywność interfejsu użytkownika.
+## Instalacja:
 
-## Instrukcje:
-1. Utwórz fork repozytorium udostępnionego przez nas na GitHub [pod tym linkiem](https://github.com/Dentametr/recruitment-backend).
-2. Po zakończeniu zadania, wyślij link do Twojego forka na adres: info@avalio.io.
-3. Upewnij się, że zawarłeś/aś wszystkie niezbędne instrukcje w README, abyśmy mogli uruchomić Twoją aplikację lokalnie (możesz nadpisać ten plik).
+Projekt można uruchomić w dowolnym środowisku LAMP (zgodnym z wersjami zawartymi w specyfikacji) kopiując dane z folderu src lub wykorzystując Dockera oraz docker-compose (https://docs.docker.com/compose/).
 
-## Ocenianie:
-Przy ocenie będziemy zwracać uwagę na:
-- Jakość kodu.
-- Przestrzeganie standardów i najlepszych praktyk programowania w PHP i Laravelu.
-- Funkcjonalność i spełnienie wymagań.
-- Zrozumienie relacji i struktury bazy danych.
+**Instalacja z wykorzystaniem docker-compose:**
 
-**Powodzenia!** 
+1. **Konfiguracja zmiennych środowiskowych:** 
+   - [ENV DOCKERA] Należy skopiować plik .env.exmaple z głównemgo folderu oraz zapisać go bez rozszerzenia jako .env
+   - [ENV LARAVELA] Analogicznie należy skopiować .env.example z folderu src ustawiając przy tym zmienne środowiskowe.
+2. **Budowa kontenerów i konfiguracja:**
+   - Z poziomu głównego folderu projektu w którym znajduje się plik docker-compose należy uruchomić komendę ```docker-compose build --no-cache```
+   - Następnie po zakończeniu pobierania i budowania obrazów należy uruchomić kontenery: ```docker-compose up -d web```
+   - Instalujemy zależności composera: ```docker-compose run --rm composer install```
+   - Uruchamiamy migracje: ```docker-compose run artisan migrate```
+   - Uruchamiamy seedery: ```docker-compose run artisan db:seed```
+   - Kolejnym krokiem jest instalacja modułów node: ```docker-compose run --rm npm install```
+   - Następnie budujemy frontend: ```docker-compose run --rm npm build```
+3. **Serwer web i mysql**
+   - Aplikacja jest dostępna pod portem http://localhost:8001
+   - MySQL jest dostępny poza kontenerem na porcie 3308
+   - Konfigurację serwera można zmienić w pliku docker-compose.yml
+4. **Wymagania systemowe**
+   - Projekt został stworzony oraz był testowany na Linux Ubuntu 18.04.6 LTS, uruchamianie projektu na innym platformach może wymagać modyfikacji pliku docker-compose.

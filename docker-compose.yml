@@ -18,7 +18,6 @@ services:
       - ./src:/var/www/html:delegated
     depends_on:
       - php
-      - redis
       - mysql
     networks:
       - recruitment_backend_network
@@ -48,15 +47,6 @@ services:
     container_name: php
     volumes:
       - ./src:/var/www/html:delegated
-    networks:
-      - recruitment_backend_network
-
-  redis:
-    image: redis:alpine
-    container_name: redis
-    restart: unless-stopped
-    ports:
-      - 6379:6379
     networks:
       - recruitment_backend_network
 
