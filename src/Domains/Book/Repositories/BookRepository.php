@@ -20,6 +20,12 @@ class BookRepository
         return new Book();
     }
 
+    /**
+     * @param string|null $search
+     * @param int|null $categoryId
+     * @param int $paginate
+     * @return LengthAwarePaginator
+     */
     public function list(
         ?string $search = null,
         ?int $categoryId = null,
