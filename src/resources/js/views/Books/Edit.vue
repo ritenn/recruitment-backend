@@ -143,8 +143,11 @@ function storeBook() {
             data.isLoading = false;
         })
         .then(response => {
-            successAlert();
-            setTimeout(() => router.push({path: '/update/' + response.data.data.id}), 3000)
+            if (response !== undefined) {
+                data.errors = null;
+                successAlert();
+                setTimeout(() => router.push({path: '/update/' + response.data.data.id}), 1000)
+            }
         })
 }
 
