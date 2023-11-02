@@ -37,7 +37,6 @@
                 </div>
                 <div class="mb-3">
                     <label for="publication_date" class="form-label">Publication date</label>
-                    {{model.publication_date}}
                     <input v-model="model.publication_date" type="date" class="form-control" id="publication_date">
                 </div>
                 <div class="mb-3">
