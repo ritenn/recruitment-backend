@@ -29,10 +29,11 @@ Projekt można uruchomić w dowolnym środowisku LAMP (zgodnym z wersjami zawart
    - Z poziomu głównego folderu projektu w którym znajduje się plik docker-compose należy uruchomić komendę ```docker-compose build --no-cache```
    - Następnie po zakończeniu pobierania i budowania obrazów należy uruchomić kontenery: ```docker-compose up -d web```
    - Instalujemy zależności composera: ```docker-compose run --rm composer install```
+   - Generujemy salt/klucz: ```docker-compose run --rm artisan key:generate``` 
    - Uruchamiamy migracje: ```docker-compose run artisan migrate```
    - Uruchamiamy seedery: ```docker-compose run artisan db:seed```
    - Kolejnym krokiem jest instalacja modułów node: ```docker-compose run --rm npm install```
-   - Następnie budujemy frontend: ```docker-compose run --rm npm build```
+   - Następnie budujemy frontend: ```docker-compose run --rm npm run build```
 3. **Serwer web i mysql**
    - Aplikacja jest dostępna pod portem http://localhost:8001
    - MySQL jest dostępny poza kontenerem na porcie 3308
