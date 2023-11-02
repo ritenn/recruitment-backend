@@ -14,7 +14,7 @@ Stworzenie prostego systemu do zarządzania książkami w bibliotece.
     - Docker (docker-compose)
     - Bootstrap 5
 2. **Opis:**
-    - Logika backendowa znajduje się w formie modułów w folderze "Domains, frontend został zbudowany w formie SPA konsumując API Laravela."
+    - Logika backendowa znajduje się w formie modułów w folderze "Domains", frontend został zbudowany w formie SPA konsumując API Laravela.
 
 ## Instalacja:
 
